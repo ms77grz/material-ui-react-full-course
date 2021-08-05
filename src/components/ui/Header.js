@@ -23,7 +23,7 @@ export default function Header(props) {
     <React.Fragment>
       <CssBaseline />
       <ElevationScroll {...props}>
-        <AppBar position='fixed' color='primary'>
+        <AppBar position='fixed' color='secondary'>
           <Toolbar>
             <Typography variant='h6'>Arc Development</Typography>
           </Toolbar>
