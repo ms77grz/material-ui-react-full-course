@@ -25,7 +25,9 @@ export default function Header(props) {
       <ElevationScroll {...props}>
         <AppBar position='fixed' color='secondary'>
           <Toolbar>
-            <Typography variant='h6'>Arc Development</Typography>
+            <Typography variant='h3' color='primary'>
+              Arc Development
+            </Typography>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
