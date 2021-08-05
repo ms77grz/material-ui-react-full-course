@@ -2,9 +2,10 @@ import React from 'react';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core';
+
+import logo from '../../assets/logo.svg';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -22,6 +23,10 @@ function ElevationScroll(props) {
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
+    marginBottom: '3em',
+  },
+  logo: {
+    height: '7em',
   },
 }));
 
@@ -32,11 +37,9 @@ export default function Header(props) {
     <React.Fragment>
       <CssBaseline />
       <ElevationScroll {...props}>
-        <AppBar position='fixed' color='secondary'>
-          <Toolbar>
-            <Typography variant='h3' color='primary'>
-              Arc Development
-            </Typography>
+        <AppBar position='fixed'>
+          <Toolbar disableGutters>
+            <img src={logo} alt='company logo' className={classes.logo} />
           </Toolbar>
         </AppBar>
       </ElevationScroll>
