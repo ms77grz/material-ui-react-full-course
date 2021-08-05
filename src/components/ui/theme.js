@@ -17,8 +17,11 @@ const theme = createTheme({
     },
   },
   typography: {
-    h3: {
-      fontWeight: 300,
+    tab: {
+      fontFamily: 'Raleway',
+      textTransform: 'capitalize',
+      fontWeight: 700,
+      fontSize: '1rem',
     },
   },
 });

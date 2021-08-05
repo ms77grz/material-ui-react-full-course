@@ -3,7 +3,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Tab, Tabs } from '@material-ui/core';
 
 import logo from '../../assets/logo.svg';
 
@@ -28,6 +28,14 @@ const useStyles = makeStyles(theme => ({
   logo: {
     height: '7em',
   },
+  tabContainer: {
+    marginLeft: 'auto',
+    '& .MuiTab-wrapper': {
+      ...theme.typography.tab,
+      minWidth: 10,
+      marginLeft: '25px',
+    },
+  },
 }));
 
 export default function Header(props) {
@@ -40,6 +48,13 @@ export default function Header(props) {
         <AppBar position='fixed'>
           <Toolbar disableGutters>
             <img src={logo} alt='company logo' className={classes.logo} />
+            <Tabs className={classes.tabContainer}>
+              <Tab label='home' />
+              <Tab label='services' />
+              <Tab label='the revolution' />
+              <Tab label='about us' />
+              <Tab label='contact us' />
+            </Tabs>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
