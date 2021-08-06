@@ -27,7 +27,7 @@ function App() {
             path='/revolution'
             component={() => <div>the revolution</div>}
           />
-          <Route exact path='/about' component={() => <div>about us</div>} />
+          <Route exact path='/about' component={() => <div>about</div>} />
           <Route
             exact
             path='/contact'

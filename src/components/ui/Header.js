@@ -5,8 +5,18 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Button, makeStyles, Tab, Tabs } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import logo from '../../assets/logo.svg';
+
+const paths = [
+  { href: '/', label: 'home' },
+  { href: '/services', label: 'services' },
+  { href: '/revolution', label: 'the revolution' },
+  { href: '/about', label: 'about us' },
+  { href: '/contact', label: 'contact us' },
+];
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -56,18 +66,24 @@ const useStyles = makeStyles(theme => ({
 export default function Header(props) {
   const classes = useStyles();
 
-  const paths = [
-    { href: '/', label: 'home' },
-    { href: '/services', label: 'services' },
-    { href: '/revolution', label: 'the revolution' },
-    { href: '/about', label: 'about us' },
-    { href: '/contact', label: 'contact us' },
-  ];
-
   const [value, setValue] = useState(0);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e, index) => {
     setValue(index);
+  };
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -99,7 +115,15 @@ export default function Header(props) {
               indicatorColor='primary'
             >
               {paths.map(path => (
-                <Tab label={path.label} component={Link} to={path.href} />
+                <Tab
+                  aria-owns={anchorEl ? 'service-menu' : undefined}
+                  aria-haspopup={anchorEl ? 'true' : undefined}
+                  onMouseOver={event => handleClick(event)}
+                  key={path.label}
+                  label={path.label}
+                  component={Link}
+                  to={path.href}
+                />
               ))}
             </Tabs>
             <Button
@@ -109,6 +133,24 @@ export default function Header(props) {
             >
               free estimate
             </Button>
+            <Menu
+              id='service-menu'
+              anchorEl={anchorEl}
+              keepMounted
+              open={
+                anchorEl?.attributes.href.textContent.includes('/services')
+                  ? open
+                  : null
+              }
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }}
+            >
+              <MenuItem onClick={handleClose}>
+                custom software development
+              </MenuItem>
+              <MenuItem onClick={handleClose}>mobile app development</MenuItem>
+              <MenuItem onClick={handleClose}>website development</MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
