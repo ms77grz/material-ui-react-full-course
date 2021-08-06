@@ -3,7 +3,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles, Tab, Tabs } from '@material-ui/core';
+import { Button, makeStyles, Tab, Tabs } from '@material-ui/core';
 
 import logo from '../../assets/logo.svg';
 
@@ -36,6 +36,13 @@ const useStyles = makeStyles(theme => ({
       marginLeft: '25px',
     },
   },
+  btn: {
+    ...theme.typography.estimate,
+    borderRadius: 50,
+    marginLeft: 50,
+    marginRight: 25,
+    height: 45,
+  },
 }));
 
 export default function Header(props) {
@@ -55,6 +62,13 @@ export default function Header(props) {
               <Tab label='about us' />
               <Tab label='contact us' />
             </Tabs>
+            <Button
+              variant='contained'
+              color='secondary'
+              className={classes.btn}
+            >
+              free estimate
+            </Button>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
