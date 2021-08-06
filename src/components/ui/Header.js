@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -29,6 +29,12 @@ const useStyles = makeStyles(theme => ({
   logo: {
     height: '7em',
   },
+  logoContainer: {
+    padding: 0,
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
   tabContainer: {
     marginLeft: 'auto',
     '& .MuiTab-wrapper': {
@@ -50,11 +56,26 @@ const useStyles = makeStyles(theme => ({
 export default function Header(props) {
   const classes = useStyles();
 
+  const paths = [
+    { href: '/', label: 'home' },
+    { href: '/services', label: 'services' },
+    { href: '/revolution', label: 'the revolution' },
+    { href: '/about', label: 'about us' },
+    { href: '/contact', label: 'contact us' },
+  ];
+
   const [value, setValue] = useState(0);
 
   const handleChange = (e, index) => {
     setValue(index);
   };
+
+  useEffect(() => {
+    const pathIndex = paths
+      .map(path => path.href)
+      .indexOf(window.location.pathname);
+    setValue(pathIndex);
+  }, [value]);
 
   return (
     <React.Fragment>
@@ -62,18 +83,24 @@ export default function Header(props) {
       <ElevationScroll {...props}>
         <AppBar position='fixed'>
           <Toolbar disableGutters>
-            <img src={logo} alt='company logo' className={classes.logo} />
+            <Button
+              disableRipple
+              component={Link}
+              to='/'
+              className={classes.logoContainer}
+              onClick={() => setValue(0)}
+            >
+              <img src={logo} alt='company logo' className={classes.logo} />
+            </Button>
             <Tabs
               value={value}
               className={classes.tabContainer}
               onChange={handleChange}
               indicatorColor='primary'
             >
-              <Tab label='home' component={Link} to='/' />
-              <Tab label='services' component={Link} to='/services' />
-              <Tab label='the revolution' component={Link} to='/revolution' />
-              <Tab label='about us' component={Link} to='/about' />
-              <Tab label='contact us' component={Link} to='/contact' />
+              {paths.map(path => (
+                <Tab label={path.label} component={Link} to={path.href} />
+              ))}
             </Tabs>
             <Button
               variant='contained'
