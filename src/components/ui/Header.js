@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Button, makeStyles, Tab, Tabs } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
 
@@ -68,11 +69,11 @@ export default function Header(props) {
               onChange={handleChange}
               indicatorColor='primary'
             >
-              <Tab label='home' />
-              <Tab label='services' />
-              <Tab label='the revolution' />
-              <Tab label='about us' />
-              <Tab label='contact us' />
+              <Tab label='home' component={Link} to='/' />
+              <Tab label='services' component={Link} to='/services' />
+              <Tab label='the revolution' component={Link} to='/revolution' />
+              <Tab label='about us' component={Link} to='/about' />
+              <Tab label='contact us' component={Link} to='/contact' />
             </Tabs>
             <Button
               variant='contained'
