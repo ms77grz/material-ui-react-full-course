@@ -2,21 +2,15 @@ import React, { useState, useEffect } from 'react';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Button, makeStyles, Tab, Tabs } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import logo from '../../assets/logo.svg';
-
-const paths = [
-  { href: '/', label: 'home' },
-  { href: '/services', label: 'services' },
-  { href: '/revolution', label: 'the revolution' },
-  { href: '/about', label: 'about us' },
-  { href: '/contact', label: 'contact us' },
-];
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -37,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '3em',
   },
   logo: {
-    height: '7em',
+    height: '8em',
   },
   logoContainer: {
     padding: 0,
@@ -47,12 +41,11 @@ const useStyles = makeStyles(theme => ({
   },
   tabContainer: {
     marginLeft: 'auto',
-    '& .MuiTab-wrapper': {
-      ...theme.typography.tab,
-      minWidth: 10,
-      marginLeft: 25,
-      marginRight: 25,
-    },
+  },
+  tab: {
+    ...theme.typography.tab,
+    minWidth: 10,
+    marginLeft: 25,
   },
   btn: {
     ...theme.typography.estimate,
@@ -65,19 +58,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
   const classes = useStyles();
-
   const [value, setValue] = useState(0);
-
   const [anchorEl, setAnchorEl] = useState(null);
-
   const [open, setOpen] = useState(false);
 
-  const handleChange = (e, index) => {
-    setValue(index);
+  const handleChange = (e, value) => {
+    setValue(value);
   };
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
     setOpen(true);
   };
 
@@ -87,69 +77,129 @@ export default function Header(props) {
   };
 
   useEffect(() => {
-    const pathIndex = paths
-      .map(path => path.href)
-      .indexOf(window.location.pathname);
-    setValue(pathIndex);
+    if (window.location.pathname === '/' && value !== 0) {
+      setValue(0);
+    } else if (window.location.pathname === '/services' && value !== 1) {
+      setValue(1);
+    } else if (window.location.pathname === '/revolution' && value !== 2) {
+      setValue(2);
+    } else if (window.location.pathname === '/about' && value !== 3) {
+      setValue(3);
+    } else if (window.location.pathname === '/contact' && value !== 4) {
+      setValue(4);
+    } else if (window.location.pathname === '/estimate' && value !== 5) {
+      setValue(5);
+    }
   }, [value]);
 
   return (
     <React.Fragment>
-      <CssBaseline />
       <ElevationScroll {...props}>
         <AppBar position='fixed'>
           <Toolbar disableGutters>
             <Button
-              disableRipple
               component={Link}
               to='/'
               className={classes.logoContainer}
+              disableRipple
               onClick={() => setValue(0)}
             >
               <img src={logo} alt='company logo' className={classes.logo} />
             </Button>
             <Tabs
               value={value}
-              className={classes.tabContainer}
               onChange={handleChange}
+              className={classes.tabContainer}
               indicatorColor='primary'
             >
-              {paths.map(path => (
-                <Tab
-                  aria-owns={anchorEl ? 'service-menu' : undefined}
-                  aria-haspopup={anchorEl ? 'true' : undefined}
-                  onMouseOver={event => handleClick(event)}
-                  key={path.label}
-                  label={path.label}
-                  component={Link}
-                  to={path.href}
-                />
-              ))}
+              <Tab
+                className={classes.tab}
+                label='Home'
+                component={Link}
+                to='/'
+              />
+              <Tab
+                aria-owns={anchorEl ? 'services-menu' : undefined}
+                aria-haspopup={anchorEl ? 'true' : undefined}
+                className={classes.tab}
+                label='Services'
+                component={Link}
+                onMouseOver={event => handleClick(event)}
+                to='/services'
+              />
+              <Tab
+                className={classes.tab}
+                label='The Revolution'
+                component={Link}
+                to='/revolution'
+              />
+              <Tab
+                className={classes.tab}
+                label='About Us'
+                component={Link}
+                to='/about'
+              />
+              <Tab
+                className={classes.tab}
+                label='Contact Us'
+                component={Link}
+                to='/contact'
+              />
             </Tabs>
             <Button
               variant='contained'
               color='secondary'
               className={classes.btn}
             >
-              free estimate
+              Free Estimate
             </Button>
             <Menu
-              id='service-menu'
+              id='services-menu'
               anchorEl={anchorEl}
-              keepMounted
-              open={
-                anchorEl?.attributes.href.textContent.includes('/services')
-                  ? open
-                  : null
-              }
+              open={open}
               onClose={handleClose}
               MenuListProps={{ onMouseLeave: handleClose }}
             >
-              <MenuItem onClick={handleClose}>
-                custom software development
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to='/services'
+              >
+                Services
               </MenuItem>
-              <MenuItem onClick={handleClose}>mobile app development</MenuItem>
-              <MenuItem onClick={handleClose}>website development</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to='/customsoftware'
+              >
+                Custom software development
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to='/mobileapps'
+              >
+                Mobile app development
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to='/websites'
+              >
+                Website development
+              </MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>

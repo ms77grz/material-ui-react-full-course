@@ -9,31 +9,31 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path='/' component={() => <div>home</div>} />
-          <Route exact path='/services' component={() => <div>services</div>} />
+          <Route exact path='/' component={() => <div>Home</div>} />
+          <Route exact path='/services' component={() => <div>Services</div>} />
           <Route
             exact
             path='/customsoftware'
-            component={() => <div>custom software</div>}
+            component={() => <div>Custom Software</div>}
           />
           <Route
             exact
             path='/mobileapps'
-            component={() => <div>mobile apps</div>}
+            component={() => <div>Mobile Apps</div>}
           />
-          <Route exact path='/websites' component={() => <div>websites</div>} />
+          <Route exact path='/websites' component={() => <div>Websites</div>} />
           <Route
             exact
             path='/revolution'
-            component={() => <div>the revolution</div>}
+            component={() => <div>The Revolution</div>}
           />
-          <Route exact path='/about' component={() => <div>about</div>} />
+          <Route exact path='/about' component={() => <div>About</div>} />
           <Route
             exact
             path='/contact'
-            component={() => <div>contact us</div>}
+            component={() => <div>Contact Us</div>}
           />
-          <Route exact path='/estimate' component={() => <div>estimate</div>} />
+          <Route exact path='/estimate' component={() => <div>Estimate</div>} />
         </Switch>
       </BrowserRouter>
     </ThemeProvider>
