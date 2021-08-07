@@ -6,8 +6,8 @@ const arcOrange = '#ffba60';
 const theme = createTheme({
   palette: {
     common: {
-      arcBlue: arcBlue,
-      arcOrange: arcOrange,
+      blue: arcBlue,
+      orange: arcOrange,
     },
     primary: {
       main: arcBlue,
