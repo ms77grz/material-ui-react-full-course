@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import footerAdornment from '../../assets/Footer Adornment.svg';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
+
+import footerAdornment from '../../assets/Footer Adornment.svg';
+import facebook from '../../assets/facebook.svg';
+import twitter from '../../assets/twitter.svg';
+import instagram from '../../assets/instagram.svg';
 
 const useStyles = makeStyles(theme => ({
   footer: {
@@ -33,6 +37,22 @@ const useStyles = makeStyles(theme => ({
   },
   gridItem: {
     margin: '3em',
+  },
+  icon: {
+    width: '4em',
+    height: '4em',
+    [theme.breakpoints.down('xs')]: {
+      width: '2.5em',
+      height: '2.5em',
+    },
+  },
+  socialContainer: {
+    position: 'absolute',
+    marginTop: '-6em',
+    right: '1.5em',
+    [theme.breakpoints.down('xs')]: {
+      right: '0.6em',
+    },
   },
 }));
 
@@ -205,6 +225,40 @@ export default function Footer(props) {
         src={footerAdornment}
         alt='black decorative slash'
       />
+      <Grid
+        container
+        justifyContent='flex-end'
+        spacing={2}
+        className={classes.socialContainer}
+      >
+        <Grid
+          item
+          component={'a'}
+          href='https://www.facebook.com'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <img src={facebook} alt='facebook logo' className={classes.icon} />
+        </Grid>
+        <Grid
+          item
+          component={'a'}
+          href='https://www.twitter.com'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <img src={twitter} alt='twitter logo' className={classes.icon} />
+        </Grid>
+        <Grid
+          item
+          component={'a'}
+          href='https://www.instagram.com'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <img src={instagram} alt='instagram logo' className={classes.icon} />
+        </Grid>
+      </Grid>
     </footer>
   );
 }
