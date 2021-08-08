@@ -136,16 +136,16 @@ const tabsOptions = [
 ];
 
 export default function Header(props) {
+  const { value, setValue, selectedIndex, setSelectedIndex } = props;
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [value, setValue] = useState(0);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleChange = (e, index) => {
     setValue(index);
@@ -180,7 +180,7 @@ export default function Header(props) {
       setValue(valueIndex === -1 ? 1 : valueIndex);
     }
     setSelectedIndex(index);
-  }, []);
+  }, [setValue, setSelectedIndex]);
 
   const tabs = (
     <React.Fragment>
