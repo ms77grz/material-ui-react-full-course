@@ -7,6 +7,7 @@ import ButtonArrow from '../components/ui/ButtonArrow';
 import Typography from '@material-ui/core/Typography';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import mobileAppsIcon from '../assets/mobileIcon.svg';
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -178,6 +179,46 @@ export default function LandingPage() {
         </Grid>
       </Grid>
       {/* end of services section */}
+      {/* ios/android section */}
+      <Grid item>
+        <Grid
+          className={classes.servicesContainer}
+          container
+          justifyContent={matchesSM ? 'center' : 'flex-end'}
+        >
+          <Grid
+            style={{
+              textAlign: matchesSM ? 'center' : undefined,
+            }}
+            item
+          >
+            <Typography variant='h4'>iOS/Android App Development</Typography>
+            <Typography className={classes.subtitle} variant='subtitle1'>
+              Extend Functionality. Extend Access. Increase Engagement.
+            </Typography>
+            <Typography variant='subtitle1'>
+              Integrate your web experience or create a standalone app{' '}
+              {matchesSM ? null : <br />}with either mobile platform.
+            </Typography>
+            <Button className={classes.learnBtn} variant='outlined'>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.blue}
+              />
+            </Button>
+          </Grid>
+          <Grid style={{ marginRight: matchesSM ? 0 : '5em' }} item>
+            <img
+              className={classes.icon}
+              src={mobileAppsIcon}
+              alt='mobile phone icon'
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* end of ios/android section */}
     </Grid>
   );
 }

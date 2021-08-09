@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
 const menuOptions = [
   { link: '/services', name: 'Services' },
   { link: '/customsoftware', name: 'Custom Software Development' },
-  { link: '/mobileapps', name: 'Mobile App Development' },
+  { link: '/mobileapps', name: 'iOS/Android App Development' },
   { link: '/websites', name: 'Websites' },
 ];
 
