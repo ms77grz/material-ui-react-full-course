@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
+import websitesIcon from '../assets/websiteIcon.svg';
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -138,7 +139,7 @@ export default function LandingPage() {
         </Grid>
       </Grid>
       {/* end of hero section */}
-      {/* services section */}
+      {/* custom software section */}
       <Grid item>
         <Grid
           className={classes.servicesContainer}
@@ -178,7 +179,7 @@ export default function LandingPage() {
           </Grid>
         </Grid>
       </Grid>
-      {/* end of services section */}
+      {/* end of custom software section */}
       {/* ios/android section */}
       <Grid item>
         <Grid
@@ -219,6 +220,46 @@ export default function LandingPage() {
         </Grid>
       </Grid>
       {/* end of ios/android section */}
+      {/* website section */}
+      <Grid item>
+        <Grid
+          className={classes.servicesContainer}
+          container
+          justifyContent={matchesSM ? 'center' : undefined}
+        >
+          <Grid
+            style={{
+              marginLeft: matchesSM ? 0 : '5em',
+              textAlign: matchesSM ? 'center' : undefined,
+            }}
+            item
+          >
+            <Typography variant='h4'>Website Development</Typography>
+            <Typography className={classes.subtitle} variant='subtitle1'>
+              Reach More. Discover More. Sell More.
+            </Typography>
+            <Typography variant='subtitle1'>
+              Optimized for Search Engines, built for speed.
+            </Typography>
+            <Button className={classes.learnBtn} variant='outlined'>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.blue}
+              />
+            </Button>
+          </Grid>
+          <Grid item>
+            <img
+              className={classes.icon}
+              src={websitesIcon}
+              alt='website icon'
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* end of website section */}
     </Grid>
   );
 }
