@@ -178,7 +178,7 @@ export default function Header(props) {
     const index = menuOptions.findIndex(option => option.link === pathname);
 
     if (pathname === '/estimate') {
-      setValue(false);
+      setValue(5);
     } else {
       setValue(valueIndex === -1 ? 1 : valueIndex);
     }
@@ -215,7 +215,14 @@ export default function Header(props) {
         <Tab className={classes.hidden}></Tab>
         {/*  */}
       </Tabs>
-      <Button variant='contained' color='secondary' className={classes.btn}>
+      <Button
+        component={Link}
+        to='/estimate'
+        variant='contained'
+        color='secondary'
+        className={classes.btn}
+        onClick={() => setValue(5)}
+      >
         Free Estimate
       </Button>
       <Menu
