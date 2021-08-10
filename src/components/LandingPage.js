@@ -9,9 +9,10 @@ import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
-
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+
+import CallToAction from './ui/CallToAction';
 
 import revolutionBackground from '../assets/repeatingBackground.svg';
 import infoBackground from '../assets/infoBackground.svg';
@@ -408,6 +409,11 @@ export default function LandingPage() {
         </Grid>
       </Grid>
       {/* end of information block */}
+      {/* call to action block */}
+      <Grid item>
+        <CallToAction />
+      </Grid>
+      {/* end of call to action block */}
     </Grid>
   );
 }
