@@ -58,6 +58,11 @@ const theme = createTheme({
       fontSize: '1.25rem',
       fontWeight: 300,
     },
+    body1: {
+      fontSize: '1.25rem',
+      color: arcGrey,
+      fontWeight: 300,
+    },
     learnBtn: {
       borderColor: arcBlue,
       color: arcBlue,

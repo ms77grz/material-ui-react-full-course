@@ -47,11 +47,7 @@ function App() {
             exact
             path='/customsoftware'
             render={props => (
-              <CustomSoftware
-                {...props}
-                setValue={setValue}
-                setSelectedIndex={setSelectedIndex}
-              />
+              <CustomSoftware {...props} setSelectedIndex={setSelectedIndex} />
             )}
           />
           <Route
