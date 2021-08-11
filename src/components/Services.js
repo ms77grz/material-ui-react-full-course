@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   servicesContainer: {
-    marginTop: '12em',
+    marginTop: '10em',
     [theme.breakpoints.down('sm')]: {
       padding: 25,
     },
@@ -51,16 +51,33 @@ export default function Services(props) {
 
   return (
     <Grid container direction='column'>
+      <Grid
+        item
+        style={{
+          marginLeft: matchesSM ? 0 : '5em',
+          marginTop: matchesSM ? '1em' : '2em',
+        }}
+      >
+        <Typography
+          variant='h2'
+          gutterBottom
+          align={matchesSM ? 'center' : undefined}
+        >
+          Services
+        </Typography>
+      </Grid>
       {/* ios/android section */}
       <Grid item>
         <Grid
           className={classes.servicesContainer}
           container
           justifyContent={matchesSM ? 'center' : 'flex-end'}
+          style={{ marginTop: matchesSM ? '1em' : '5em' }}
         >
           <Grid
             style={{
               textAlign: matchesSM ? 'center' : undefined,
+              width: matchesSM ? undefined : '35em',
             }}
             item
           >
@@ -95,6 +112,7 @@ export default function Services(props) {
               className={classes.icon}
               src={mobileAppsIcon}
               alt='mobile phone icon'
+              width='250em'
             />
           </Grid>
         </Grid>
@@ -156,10 +174,12 @@ export default function Services(props) {
           className={classes.servicesContainer}
           container
           justifyContent={matchesSM ? 'center' : 'flex-end'}
+          style={{ marginBottom: '10em' }}
         >
           <Grid
             style={{
               textAlign: matchesSM ? 'center' : undefined,
+              width: matchesSM ? undefined : '35em',
             }}
             item
           >
@@ -193,6 +213,7 @@ export default function Services(props) {
               className={classes.icon}
               src={websitesIcon}
               alt='website icon'
+              width='250em'
             />
           </Grid>
         </Grid>
