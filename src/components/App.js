@@ -9,6 +9,7 @@ import Services from './Services';
 import CustomSoftware from './CustomSoftware';
 import MobileApps from './MobileApps';
 import Websites from './Websites';
+import Revolution from './Revolution';
 
 function App() {
   const [value, setValue] = useState(0);
@@ -79,8 +80,12 @@ function App() {
           />
           <Route
             path='/revolution'
-            component={() => (
-              <div style={{ height: '680px' }}>The Revolution</div>
+            render={props => (
+              <Revolution
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
             )}
           />
           <Route
