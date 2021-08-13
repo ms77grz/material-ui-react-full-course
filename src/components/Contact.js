@@ -83,6 +83,39 @@ export default function Contact(props) {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
+  const [emailHelper, setEmailHelper] = useState('');
+  const [phoneHelper, setPhoneHelper] = useState('');
+
+  const onChange = event => {
+    let valid;
+    switch (event.target.id) {
+      case 'email':
+        setEmail(event.target.value);
+        valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setEmailHelper('Invalid email');
+        } else {
+          setEmailHelper('');
+        }
+        break;
+      case 'phone':
+        setPhone(event.target.value);
+        valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setPhoneHelper('Invalid phone');
+        } else {
+          setPhoneHelper('');
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <Grid container>
       <Grid
@@ -129,7 +162,12 @@ export default function Contact(props) {
                   variant='body1'
                   style={{ color: theme.palette.common.blue, fontSize: '1rem' }}
                 >
-                  (555) 555-5555
+                  <a
+                    href='tel:5555555555'
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    (555) 555-5555
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -146,7 +184,12 @@ export default function Contact(props) {
                   variant='body1'
                   style={{ color: theme.palette.common.blue, fontSize: '1rem' }}
                 >
-                  zachary@gmail.com
+                  <a
+                    href='mailto:zachary@gmail.com'
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    zachary@gmail.com
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -169,18 +212,22 @@ export default function Contact(props) {
                 <TextField
                   fullWidth
                   label='Email'
+                  error={emailHelper.length !== 0}
+                  helperText={emailHelper}
                   id='email'
                   value={email}
-                  onChange={event => setEmail(event.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   fullWidth
                   label='Phone'
+                  error={phoneHelper.length !== 0}
+                  helperText={phoneHelper}
                   id='phone'
                   value={phone}
-                  onChange={event => setPhone(event.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
             </Grid>
@@ -202,7 +249,18 @@ export default function Contact(props) {
               justifyContent='center'
               style={{ marginTop: '2em' }}
             >
-              <Button variant='contained' className={classes.sendBtn}>
+              <Button
+                disabled={
+                  name.length === 0 ||
+                  email.length === 0 ||
+                  phone.length === 0 ||
+                  message.length === 0 ||
+                  emailHelper.length !== 0 ||
+                  phoneHelper.length !== 0
+                }
+                variant='contained'
+                className={classes.sendBtn}
+              >
                 Send Message{' '}
                 <img
                   src={airplane}
