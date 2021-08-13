@@ -13,6 +13,8 @@ import phoneIcon from '../assets/phone.svg';
 import emailIcon from '../assets/email.svg';
 import airplane from '../assets/send.svg';
 
+import mobileBackground from '../assets/mobileBackground.jpg';
+
 const useStyles = makeStyles(theme => ({
   background: {
     backgroundImage: `url(${background})`,
@@ -21,6 +23,9 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: 'no-repeat',
     height: '60em',
     paddingBottom: '10em',
+    [theme.breakpoints.down('md')]: {
+      backgroundImage: `url(${mobileBackground})`,
+    },
   },
   estimateBtn: {
     ...theme.typography.estimate,
@@ -34,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.light,
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: 0,
       marginRight: 0,
     },
@@ -44,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '0.7rem',
     height: 35,
     padding: 5,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginBottom: '2em',
     },
   },
@@ -71,6 +76,7 @@ export default function Contact(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -87,14 +93,23 @@ export default function Contact(props) {
         justifyContent='center'
         lg={4}
         xl={3}
+        style={{
+          marginTop: matchesSM ? '1em' : matchesMD ? '5em' : 0,
+          marginBottom: matchesMD ? '5em' : 0,
+        }}
       >
         <Grid item>
           <Grid item container direction='column'>
             <Grid item>
-              <Typography variant='h2' style={{ lineHeight: 1 }}>
+              <Typography
+                align={matchesMD ? 'center' : undefined}
+                variant='h2'
+                style={{ lineHeight: 1 }}
+              >
                 Contact Us
               </Typography>
               <Typography
+                align={matchesMD ? 'center' : undefined}
                 variant='body1'
                 style={{ color: theme.palette.common.blue }}
               >
@@ -135,25 +150,33 @@ export default function Contact(props) {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item container style={{ maxWidth: '15em' }}>
-              <Grid item>
+            <Grid
+              item
+              container
+              direction='column'
+              style={{ maxWidth: '20em' }}
+            >
+              <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
+                  fullWidth
                   label='Name'
                   id='name'
                   value={name}
                   onChange={event => setName(event.target.value)}
                 />
               </Grid>
-              <Grid item>
+              <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
+                  fullWidth
                   label='Email'
                   id='email'
                   value={email}
                   onChange={event => setEmail(event.target.value)}
                 />
               </Grid>
-              <Grid item>
+              <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
+                  fullWidth
                   label='Phone'
                   id='phone'
                   value={phone}
@@ -161,8 +184,9 @@ export default function Contact(props) {
                 />
               </Grid>
             </Grid>
-            <Grid item style={{ maxWidth: '15em' }}>
+            <Grid item style={{ maxWidth: '20em' }}>
               <TextField
+                fullWidth
                 InputProps={{ disableUnderline: true }}
                 className={classes.message}
                 value={message}
@@ -197,28 +221,34 @@ export default function Contact(props) {
         lg={8}
         xl={9}
         alignItems='center'
+        direction={matchesMD ? 'column' : 'row'}
+        justifyContent={matchesMD ? 'center' : undefined}
       >
         <Grid
           item
           style={{
-            marginLeft: matchesSM ? 0 : '3rem',
-            textAlign: matchesSM ? 'center' : 'inherit',
+            marginLeft: matchesMD ? 0 : '3rem',
+            textAlign: matchesMD ? 'center' : 'inherit',
           }}
         >
           <Grid container direction='column'>
             <Grid item>
-              <Typography variant='h2'>
+              <Typography variant='h2' align={matchesMD ? 'center' : undefined}>
                 Simple Software.
                 <br />
                 Revolutionary Results.
               </Typography>
-              <Typography variant='subtitle2' style={{ fontSize: '1.5rem' }}>
+              <Typography
+                variant='subtitle2'
+                style={{ fontSize: '1.5rem' }}
+                align={matchesMD ? 'center' : undefined}
+              >
                 Take advantage of the 21st Century.
               </Typography>
               <Grid
                 container
                 item
-                justifyContent={matchesSM ? 'center' : undefined}
+                justifyContent={matchesMD ? 'center' : undefined}
               >
                 <Button
                   component={Link}
