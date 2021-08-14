@@ -78,8 +78,9 @@ export default function Contact(props) {
   const { setValue } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -278,11 +279,34 @@ export default function Contact(props) {
           </Grid>
         </Grid>
       </Grid>
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        PaperProps={{
+          style: {
+            paddingTop: matchesXS ? '1em' : '5em',
+            paddingBottom: matchesXS ? '1em' : '5em',
+            paddingRight: matchesXS
+              ? 0
+              : matchesSM
+              ? '5em'
+              : matchesMD
+              ? '10em'
+              : '20em',
+            paddingLeft: matchesXS
+              ? 0
+              : matchesSM
+              ? '5em'
+              : matchesMD
+              ? '10em'
+              : '20em',
+          },
+        }}
+      >
         <DialogContent>
           <Grid container direction='column'>
             <Grid item>
-              <Typography variant='h4' gutterBottom>
+              <Typography align='center' variant='h4' gutterBottom>
                 Confirm Message
               </Typography>
             </Grid>
@@ -330,9 +354,13 @@ export default function Contact(props) {
               />
             </Grid>
           </Grid>
-          <Grid item container>
+          <Grid item container style={{ marginTop: '2em' }} alignItems='center'>
             <Grid item>
-              <Button color='primary' onClick={() => setOpen(false)}>
+              <Button
+                style={{ fontWeight: 300 }}
+                color='primary'
+                onClick={() => setOpen(false)}
+              >
                 Cancel
               </Button>
             </Grid>
