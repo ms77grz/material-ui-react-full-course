@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -124,6 +125,18 @@ export default function Contact(props) {
       default:
         break;
     }
+  };
+
+  const onConfirm = () => {
+    axios
+      .post('http://localhost:1337/contacts', {
+        name,
+        email,
+        phone,
+        message,
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   return (
@@ -260,14 +273,14 @@ export default function Contact(props) {
               style={{ marginTop: '2em' }}
             >
               <Button
-                // disabled={
-                //   name.length === 0 ||
-                //   email.length === 0 ||
-                //   phone.length === 0 ||
-                //   message.length === 0 ||
-                //   emailHelper.length !== 0 ||
-                //   phoneHelper.length !== 0
-                // }
+                disabled={
+                  name.length === 0 ||
+                  email.length === 0 ||
+                  phone.length === 0 ||
+                  message.length === 0 ||
+                  emailHelper.length !== 0 ||
+                  phoneHelper.length !== 0
+                }
                 variant='contained'
                 className={classes.sendBtn}
                 onClick={() => setOpen(true)}
@@ -388,7 +401,7 @@ export default function Contact(props) {
                 }
                 variant='contained'
                 className={classes.sendBtn}
-                onClick={() => setOpen(true)}
+                onClick={onConfirm}
               >
                 Send Message
                 <img
